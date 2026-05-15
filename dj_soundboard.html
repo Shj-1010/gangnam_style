@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ 사운드보드 크루</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #121212;
+            font-family: 'Malgun Gothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .soundboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 15px;
+            width: 96vw;
+            height: 92vh;
+            padding: 10px;
+        }
+        .pad {
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.05s, filter 0.2s, box-shadow 0.05s;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .pad:nth-child(1) { background: linear-gradient(135deg, #ff5f6d, #ffc371); }
+        .pad:nth-child(2) { background: linear-gradient(135deg, #2193b0, #6dd5ed); }
+        .pad:nth-child(3) { background: linear-gradient(135deg, #ee0979, #ff6a00); }
+        .pad:nth-child(4) { background: linear-gradient(135deg, #02aab0, #00cdac); }
+        .pad:nth-child(5) { background: linear-gradient(135deg, #7f00ff, #e100ff); }
+        .pad:nth-child(6) { background: linear-gradient(135deg, #396afc, #2948ff); }
+        .pad:nth-child(7) { background: linear-gradient(135deg, #f857a6, #ff5858); }
+        .pad:nth-child(8) { background: linear-gradient(135deg, #11998e, #38ef7d); }
+
+        .pad:hover {
+            filter: brightness(1.2);
+        }
+        .pad:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 768px) {
+            .soundboard {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+            }
+            .pad {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="soundboard">
+        <button class="pad" onclick="playSound('psy/human.mp3')">인간</button>
+        <button class="pad" onclick="playSound('psy/damngirl.mp3')">Damn Girl</button>
+        <button class="pad" onclick="playSound('psy/ssanae.mp3')">싸나에</button>
+        <button class="pad" onclick="playSound('psy/gang.mp3')">Gang</button>
+        <button class="pad" onclick="playSound('psy/sexylady.mp3')">Sexy Lady</button>
+        <button class="pad" onclick="playSound('psy/eee.mp3')">에에에</button>
+        <button class="pad" onclick="playSound('psy/op.mp3')">옵</button>
+        <button class="pad" onclick="playSound('psy/yeojja.mp3')">여짜</button>
+    </div>
+
+    <script>
+        const audioCache = {};
+
+        function playSound(fileName) {
+            if (!audioCache[fileName]) {
+                audioCache[fileName] = new Audio(fileName);
+            }
+            const audio = audioCache[fileName];
+            audio.currentTime = 0;
+            audio.play().catch(error => {
+                console.error("오디오 재생 실패: 파일 경로를 확인하세요.", error);
+            });
+        }
+    </script>
+
+</body>
+</html>

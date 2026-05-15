@@ -1,0 +1,8 @@
+{
+  "name": "dj-soundboard",
+  "main": "dj_soundboard.html",
+  "window": {
+    "width": 1000,
+    "height": 600
+  }
+}
